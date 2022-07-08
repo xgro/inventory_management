@@ -15,6 +15,8 @@ app.get("/product/donut", connectDb, async (req, res, next) => {
   const [ result ] = await req.conn.query(
     getProduct('CP-502101')
   )
+
+  await req.conn.end()
   if (result.length > 0) {
     return res.status(200).json(result[0]);
   } else {
@@ -33,9 +35,11 @@ app.post("/checkout", connectDb, async (req, res, next) => {
       return res.status(200).json({ message: `구매 완료! 남은 재고: ${product.stock - 1}`});
     }
     else {
+      await req.conn.end()
       return res.status(200).json({ message: `구매 실패! 남은 재고: ${product.stock}`});
     }
   } else {
+    await req.conn.end()
     return res.status(400).json({ message: "상품 없음" });
   }
 });
