@@ -1,0 +1,17 @@
+service: stock-lambda
+
+frameworkVersion: '3'
+
+provider:
+  name: aws
+  runtime: nodejs14.x
+  region: ap-northeast-2
+
+functions:
+  stock:
+    handler: handler.handler
+    environment:
+      increase_ENDPOINT: "https://xvzvaraa89.execute-api.ap-northeast-2.amazonaws.com/product/donut" 
+    events:
+      - sqs: arn:aws:sqs:ap-northeast-2:824317260845:stock_queue
+    

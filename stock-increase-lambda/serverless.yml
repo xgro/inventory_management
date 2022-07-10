@@ -9,5 +9,13 @@ provider:
 functions:
   api:
     handler: handler.handler
+    environment:
+      HOSTNAME: "poject3-db.cpajpop7ewnt.ap-northeast-2.rds.amazonaws.com"
+      USERNAME: "xgro"
+      PASSWORD: "xgro"
+      DATABASE: "xgro-DB"
     events:
       - httpApi: '*'
+
+plugins:
+  - serverless-ignore
