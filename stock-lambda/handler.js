@@ -16,7 +16,7 @@ module.exports.handler = async (event) => {
     }
     
     console.log(payload)
-    await axios.post('http://factory.p3.api.codestates-devops.be:8080/api/manufactures', payload)
+    await axios.post(process.env.facory_ENDPOINT, payload)
       .then((res) => {
         console.log(res);
       })
