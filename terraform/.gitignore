@@ -3,6 +3,8 @@ sales/
 stock/
 *.zip
 
+.DS_Store
+
 # 의존성 디렉터리
 .terraform/
 builds/
