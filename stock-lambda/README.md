@@ -1,6 +1,6 @@
 <!--
-title: 'AWS NodeJS Example'
-description: 'This template demonstrates how to deploy a NodeJS function running on AWS Lambda using the traditional Serverless Framework.'
+title: 'Serverless Framework Node Express API on AWS'
+description: 'This template demonstrates how to develop and deploy a simple Node Express API running on AWS Lambda using the traditional Serverless Framework.'
 layout: Doc
 framework: v3
 platform: AWS
@@ -11,62 +11,28 @@ authorName: 'Serverless, inc.'
 authorAvatar: 'https://avatars1.githubusercontent.com/u/13742415?s=200&v=4'
 -->
 
+# Integration
 
-# Serverless Framework AWS NodeJS Example
+SQS를 통해 재고 부족 메시지가 전달 되었을때, 외부 API로 요청하는 Lambda 입니다.
+## 외부 API 연결 (STEP 1)
 
-This template demonstrates how to deploy a NodeJS function running on AWS Lambda using the traditional Serverless Framework. The deployed function does not include any event definitions as well as any kind of persistence (database). For more advanced configurations check out the [examples repo](https://github.com/serverless/examples/) which includes integrations with SQS, DynamoDB or examples of functions that are triggered in `cron`-like manner. For details about configuration of specific `events`, please refer to our [documentation](https://www.serverless.com/framework/docs/providers/aws/events/).
+- 로컬 테스트 환경
+    - `.env` 파일을 이용해서 외부 API 연결을 설정합니다. 관련된 환경변수는 `.env.sample` 에서 찾을 수 있습니다.
 
-## Usage
+- 배포 환경
+    - AWS 람다 콘솔에서 환경 변수를 직접 입력합니다.
 
-### Deployment
+<br>
 
-In order to deploy the example, you need to run the following command:
+## 사용 가능한 명령
 
+### 로컬 실행
 ```
-$ serverless deploy
-```
-
-After running deploy, you should see output similar to:
-
-```bash
-Deploying aws-node-project to stage dev (us-east-1)
-
-✔ Service deployed to stack aws-node-project-dev (112s)
-
-functions:
-  hello: aws-node-project-dev-hello (1.5 kB)
+npm start
 ```
 
-### Invocation
-
-After successful deployment, you can invoke the deployed function by using the following command:
-
-```bash
-serverless invoke --function hello
+### 배포
+```
+serverless deploy
 ```
 
-Which should result in response similar to the following:
-
-```json
-{
-    "statusCode": 200,
-    "body": "{\n  \"message\": \"Go Serverless v3.0! Your function executed successfully!\",\n  \"input\": {}\n}"
-}
-```
-
-### Local development
-
-You can invoke your function locally by using the following command:
-
-```bash
-serverless invoke local --function hello
-```
-
-Which should result in response similar to the following:
-
-```
-{
-    "statusCode": 200,
-    "body": "{\n  \"message\": \"Go Serverless v3.0! Your function executed successfully!\",\n  \"input\": \"\"\n}"
-}
-```
